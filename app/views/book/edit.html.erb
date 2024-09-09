@@ -1,0 +1,32 @@
+<div class="container login-container">
+  <h2>Edit <%= @book.title %></h2>
+  <div class="tab-pane" aria-labelledby="tab-register">
+      <%= form_with scope: "book", url: book_path(id: @book.id), method: :put do |f| %>
+
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :title, class: "form-label"%><br />
+          <%= f.text_field :title, autofocus: true, class: "form-control"%>
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :author, class: "form-label"%><br />
+          <%= f.text_field :author, autofocus: true, class: "form-control"%>
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :genre, class: "form-label"%><br />
+          <%= f.text_field :join_genres, autofocus: true, class: "form-control"%>
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :isbn, class: "form-label"%><br />
+          <%= f.text_field :isbn, autofocus: true, class: "form-control"%>
+        </div>
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :total_copies, class: "form-label"%><br />
+          <%= f.text_field :total_copies, autofocus: true, class: "form-control"%>
+        </div>
+        <%= f.submit "Update", class: "btn btn-primary btn-block mb-3"%>
+      <% end %>
+    </div>
+    <%= link_to "back", book_index_path, class: "btn btn-link" %>
+  </div>
+
+</div>

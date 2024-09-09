@@ -1,0 +1,73 @@
+<div class="container">
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <% if current_user.librarian? %>
+      <div class="col mb-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header">Total books</div>
+          <div class="card-body">
+            <h5 class="card-title">Total of <%= @books %> books</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header">Total borrowed books</div>
+          <div class="card-body">
+            <h5 class="card-title">Total of <%= @borrowed_books %> borrowed books</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header">Total books due today</div>
+          <div class="card-body">
+            <h5 class="card-title">Total of <%= @books_due_today.count %> books due today</h5>
+            <%= link_to "See all", dashboard_books_to_deliver_path, method: :get, class:"btn btn-outline-success my-2 my-sm-0"  %>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-8">
+        <div class="card bg-light mb-8" style="max-width: 45rem;">
+          <div class="card-header">Members with books due today</div>
+          <div class="card-body">
+            <% @members.each do |member| %>
+              <h5 class="card-title"><%= member.name %> : <%= member.email %></h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="col mb-3">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header">Books borrowed</div>
+          <div class="card-body">
+            <% @borrowed_books.each do |borrowed_book| %>
+              <h5 class="card-title"><%= borrowed_book.book.title %>, due date: <%= borrowed_book.due_date %></h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if @overdue_books.present? %>
+        <div class="col mb-3">
+          <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+            <div class="card-header">Books overdue</div>
+            <div class="card-body">
+            <% @overdue_books.each do |overdue_book| %>
+              <h5 class="card-title"><%= overdue_book.book.title %>, overdue by <%= (Date.today - overdue_book.due_date).to_int %> days</h5>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
+    <% end %>
+
+
+
+  </div>
+
+
+
+</div>

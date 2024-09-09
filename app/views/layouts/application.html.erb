@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LibraryTest</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Library</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <%= link_to "Dashboard", root_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Books", book_index_path, class:"nav-link" %>
+          </li>
+        </ul>
+        
+      </div>
+      <div class="my-2 my-lg-0">
+        <% if current_user.present? %>
+          <%= button_to "logout", destroy_user_session_path, method: :delete, class:"btn btn-outline-success my-2 my-sm-0"  %>
+        <% end %>
+      </div>
+    </nav>
+    <% if notice.present? %>
+      <div id="error_explanation" data-turbo-cache="false" class="alert alert-secondary container login-container">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div id="error_explanation" data-turbo-cache="false" class="alert alert-danger container login-container">
+        <%= alert %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

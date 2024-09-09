@@ -1,0 +1,39 @@
+<div class="container">
+<% if current_user.librarian? %>
+  <%= link_to "Create new book", new_book_path, method: :get, class:"btn btn-outline-success my-2 my-sm-0"  %>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <th scope="row"><%= book.id %></th>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td>
+          <div class="btn-group" role="group">
+            <% if current_user.librarian? %>
+              <%= link_to "Show", book_path(id: book.id), method: :get, class:"btn btn-outline-success my-2 my-sm-0"  %>
+              <%= link_to "Edit", edit_book_path(id: book.id), method: :get, class:"btn btn-outline-success my-2 my-sm-0"  %>
+              <%= button_to "Destroy", book_path(id: book.id), method: :delete, class:"btn btn-outline-success my-2 my-sm-0"  %>
+            <% else %>
+              <%= link_to "Show", book_path(id: book.id), method: :delete, class:"btn btn-outline-success" %>
+              <% if book.available? %>
+                <%= button_to "Borrow", book_borrow_path(id: book.id), method: :post, class:"btn btn-outline-success" %>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

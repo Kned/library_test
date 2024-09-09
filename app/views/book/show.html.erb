@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="card">
+    <ul>Title
+      <li type="email"  id="title" aria-describedby="emailHelp" readonly><%= @book.title %></li>
+    </ul>
+    <ul>Author
+    <li type="email"  id="author" aria-describedby="emailHelp" readonly><%= @book.author %></li>
+    </ul>
+    <ul>Genre
+    <% @book.genre.each do |gen| %>
+      <li type="email"  id="genre" aria-describedby="emailHelp" readonly><%= gen %></li>
+    <% end %>
+    </ul>
+    <ul>isbn
+      <li type="email"  id="isbn" aria-describedby="emailHelp" readonly><%= @book.isbn %></li>
+    </ul>
+    <ul>Total copies
+      <li type="email" class="" id="total_copies" aria-describedby="emailHelp" readonly><%= @book.total_copies %></li>
+    </ul>
+  </div>
+  <%= link_to "back", book_index_path, class: "btn btn-link" %>
+</div>
+ 

@@ -1,0 +1,18 @@
+<div class="container login-container">
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2>Forgot your password?</h2>
+  <div class="tab-pane" aria-labelledby="tab-register">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <!-- Email input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+          <%= f.label :email, class: "form-label"%><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"%>
+        </div>
+        <!-- Submit button -->
+        <%= f.submit "Send me reset password instructions", class: "btn btn-primary btn-block mb-3"%>
+      
+      <% end %>
+    </div>
+    <%= link_to "Back", :back, class: "btn btn-link" %>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.container{
+  &.login-container{
+    width: 450px !important;
+  }
+}
